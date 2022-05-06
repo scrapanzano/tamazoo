@@ -1,10 +1,19 @@
 package it.unibs.fp.tamazoo;
 
+/**
+ * <p>
+ * Un Tamagotchi e' un'entita' software in grado di recepire stimoli dall'esterno 
+ * che determinano la sua sopravvivenza e il suo grado di benessere: specie 
+ * diverse di Tamagotchi reagiscono in modo diverso a diversi stimoli.
+ * </p>
+ * @author Davide Leone - 723335.
+ *
+ */
 public class Tamagotchi {
 
-	private static final String MSG_TO_STRING = "Nome: %s %nAffetto: %.1f %nSazieta: %.1f%n";
-	private static final String MSG_MORTE = "Purtroppo il tuo Tamagotchi è morto..";
-	private static final String MSG_TRISTEZZA = "Il tuo Tamagotchi è triste..";
+	private static final String MSG_TO_STRING = "Nome: %s %nAffetto: %.1f %nSazieta': %.1f%n";
+	private static final String MSG_MORTE = "Purtroppo il tuo Tamagotchi e' morto..";
+	private static final String MSG_TRISTEZZA = "Sono triste..";
 	
 	public static final int MIN_ZERO = 0;
 	public static final int MAX_AFFETTO = 100;
@@ -35,11 +44,33 @@ public class Tamagotchi {
 		this.nome = _nome;
 	}
 	
+	/**
+	 * <p>
+	 * Modifica dei valori interni se il tamagotchi riceve carezze.
+	 * Le modifiche avvengono come segue:
+	 * <ul>
+	 * <li>Grado di affetto: aumenta in base alle carezze ricevute (rispettando il suo valore massimo);</li>
+	 * <li>Grado di sazieta': diminuisce della meta delle carezze ricevute (rispettando il suo valore minimo).</li>
+	 * </ul>
+	 * </p>
+	 * @param numCarezze
+	 */
 	public void riceviCarezze(int numCarezze) {
 		this.gradoAffetto = Math.min(this.gradoAffetto + numCarezze, MAX_AFFETTO);
 		this.gradoSazieta = Math.max(MIN_ZERO, this.gradoSazieta - numCarezze/FATTORE_CAREZZE);
 	}
 
+	/**
+	 * <p>
+	 * Modifica dei valori interni se il tamagotchi riceve biscotti.
+	 * Le modigiche avvengono come segue:
+	 * <ul>
+	 * <li>Grado di sazieta': in questo caso aumenta del 10% per ogni biscotti ricevuto;</li>
+	 * <li>Gradi di affetto: in questo caso diminuisce dell' 1/4 dei biscotti ricevuti.</li>
+	 * </ul>
+	 * </p>
+	 * @param numBiscotti
+	 */
 	public void riceviBiscotti(int numBiscotti) {
 		for(int i = MIN_ZERO; i < numBiscotti; i++) 
 		{
@@ -49,6 +80,17 @@ public class Tamagotchi {
 		this.gradoAffetto = Math.max(MIN_ZERO, this.gradoAffetto - numBiscotti/FATTORE_BISCOTTI);
 	}
 	
+	/**
+	 * <p>
+	 * Verifica lo stato di tristezza del tamagotchi.
+	 * Il tamagotchi e' triste quando:
+	 * <ul>
+	 * <li>Il grado di affetto e' sotto una certa soglia (in questo caso minore di 30); </li>
+	 * <li>Il grado di sazieta' e' troppo basso o troppo alto (in questo caso minore di 30 o maggiore di 90).</li>
+	 * </ul>
+	 * </p>
+	 * @return
+	 */
 	public boolean sonoTriste() {
 		boolean checkAffetto = this.gradoAffetto < SOGLIA_AFFETTO_BASSO;
 		boolean checkSazieta = this.gradoSazieta < SOGLIA_SAZIETA_BASSA || this.gradoSazieta > SOGLIA_SAZIETA_ALTA;
@@ -56,6 +98,17 @@ public class Tamagotchi {
 		return checkAffetto || checkSazieta;
 	}
 	
+	/**
+	 * <p>
+	 * Verifica lo stato di morte del tamagotchi.
+	 * Il tamagotchi e' morto quando:
+	 * <ul>
+	 * <li>Uno dei due valori interni raggiunge 0;</li>
+	 * <li>Il grado di sazieta' raggiunge il massimo.</li>
+	 * </ul>
+	 * </p>
+	 * @return
+	 */
 	public boolean sonoMorto() {
 		
 		return this.gradoSazieta == MIN_ZERO || this.gradoAffetto == MIN_ZERO || this.gradoSazieta == MAX_SAZIETA;
@@ -120,7 +173,15 @@ public class Tamagotchi {
 		setGradoAffettivo(gradoAffetto);
 	}
 	
-	//Metodo che non permette ad Affetto e Sazieta ad eccedere il range dei valori validi
+	/**
+	 * <p>Metodo che non permette al grado di affetto e di sazieta' 
+	 * di eccedere il range dei valori validi.
+	 * </p>
+	 * @param valore
+	 * @param min
+	 * @param max
+	 * @return valore che rispetta il range
+	 */
 	public double rangeValore(double valore, int min, int max)
 	{
 		if(valore < min)
