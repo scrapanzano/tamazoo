@@ -10,8 +10,13 @@ package it.unibs.fp.tamazoo;
  */
 public class TamaTriste extends Tamagotchi{
 	
+	public static final String NOME_SPECIE = "TamaTriste";
+	
+	private String specie;
+	
 	public TamaTriste(String _nome, double _gradoAffetto, double _gradoSazieta) {
 		super(_nome, _gradoAffetto, _gradoSazieta);
+		this.specie = NOME_SPECIE;
 	}
 	
 	/**
@@ -40,11 +45,11 @@ public class TamaTriste extends Tamagotchi{
 	public String toString() {
 		StringBuffer message = new StringBuffer();
 		
-		message.append(String.format(MSG_TO_STRING, this.getNome(), this.getGradoAffettivo(), this.getGradoSazieta()));
+		message.append(String.format(MSG_TO_STRING, this.getNome(), this.getGradoAffettivo(), this.getGradoSazieta(), this.specie));
 	
 		if(sonoMorto())
 		{
-			message.append(MSG_MORTE);
+			message.append(String.format(MSG_MORTE, this.getNome()));
 		}
 		else
 		{

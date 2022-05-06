@@ -126,7 +126,7 @@ public class TamaMain {
 		double gradoAffetto = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_AFFETTO);
 		double gradoSazieta = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_SAZIETA);
 		
-		int specie = EstrazioniCasuali.estraiIntero(1, 2);
+		int specie = EstrazioniCasuali.estraiIntero(0, 1);
 		
 		switch(specie) {
 		case 0: return new Tamagotchi(nome, gradoAffetto, gradoSazieta);

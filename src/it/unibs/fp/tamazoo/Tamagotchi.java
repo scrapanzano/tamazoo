@@ -11,17 +11,17 @@ package it.unibs.fp.tamazoo;
  */
 public class Tamagotchi {
 
-	public static final String MSG_TO_STRING = "Nome: %s %nAffetto: %.1f %nSazieta': %.1f%n";
-	public static final String MSG_MORTE = "%s: morto..";
-	public static final String MSG_TRISTEZZA = "%s dice: \"Sono triste..\".";
+	public static final String MSG_TO_STRING = "Nome: %s %nAffetto: %.1f %nSazieta': %.1f %nSpecie: %s%n";
+	public static final String MSG_MORTE = "%s: morto..%n";
+	public static final String MSG_TRISTEZZA = "%s dice: \"Sono triste..\".%n";
 	
 	public static final int MIN_ZERO = 0;
 	public static final int MAX_AFFETTO = 100;
 	public static final int MAX_SAZIETA = 100;
 	
-	private static final double SOGLIA_AFFETTO_BASSO = 30;
-	private static final double SOGLIA_SAZIETA_BASSA = 30;
-	private static final double SOGLIA_SAZIETA_ALTA = 90;
+	public static final double SOGLIA_AFFETTO_BASSO = 30;
+	public static final double SOGLIA_SAZIETA_BASSA = 30;
+	public static final double SOGLIA_SAZIETA_ALTA = 90;
 	
 	public static final double INCREMENTO_BISCOTTO = 1.2;
 	public static final int FATTORE_CAREZZE = 2;
@@ -33,11 +33,13 @@ public class Tamagotchi {
 	private String nome;
 	private double gradoAffetto;
 	private double gradoSazieta;
+	private String specie;
 	
 	public Tamagotchi(String _nome, double _gradoAffetto, double _gradoSazieta) {
 		this.nome = _nome;
 		this.gradoAffetto = _gradoAffetto;
 		this.gradoSazieta = _gradoSazieta;
+		this.specie = "Base";
 	}
 	
 	public Tamagotchi(String _nome) {
@@ -121,7 +123,7 @@ public class Tamagotchi {
 		StringBuffer message = new StringBuffer();
 		
 		//Per visualizzare i valori interni, rimuovere il commento sottostante.
-		//message.append(String.format(MSG_TO_STRING, nome, gradoAffetto, gradoSazieta));
+		message.append(String.format(MSG_TO_STRING, this.nome, this.gradoAffetto, this.gradoSazieta, this.specie));
 		
 		if(sonoMorto())
 		{
@@ -150,7 +152,7 @@ public class Tamagotchi {
 
 	public double getGradoAffettivo() {
 		
-		return gradoAffetto;
+		return this.gradoAffetto;
 	}
 
 	public void setGradoAffettivo(double _gradoAffetto) {
@@ -160,7 +162,7 @@ public class Tamagotchi {
 
 	public double getGradoSazieta() {
 
-		return gradoSazieta;
+		return this.gradoSazieta;
 	}
 
 	public void setGradoSazieta(double _gradoSazieta) {
@@ -171,6 +173,11 @@ public class Tamagotchi {
 	public void setSazietaAffetivita(double gradoSazieta, double gradoAffetto) {
 		setGradoSazieta(gradoSazieta);
 		setGradoAffettivo(gradoAffetto);
+	}
+	
+	public String getSpecie() {
+		
+		return specie;
 	}
 	
 	/**
