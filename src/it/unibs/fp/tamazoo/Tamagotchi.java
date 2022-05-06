@@ -11,9 +11,9 @@ package it.unibs.fp.tamazoo;
  */
 public class Tamagotchi {
 
-	private static final String MSG_TO_STRING = "Nome: %s %nAffetto: %.1f %nSazieta': %.1f%n";
-	private static final String MSG_MORTE = "%s: morto..";
-	private static final String MSG_TRISTEZZA = "%s dice: \"Sono triste..\".";
+	public static final String MSG_TO_STRING = "Nome: %s %nAffetto: %.1f %nSazieta': %.1f%n";
+	public static final String MSG_MORTE = "%s: morto..";
+	public static final String MSG_TRISTEZZA = "%s dice: \"Sono triste..\".";
 	
 	public static final int MIN_ZERO = 0;
 	public static final int MAX_AFFETTO = 100;
@@ -107,7 +107,7 @@ public class Tamagotchi {
 	 * <li>Il grado di sazieta' raggiunge il massimo.</li>
 	 * </ul>
 	 * </p>
-	 * @return
+	 * @return True se vengono rispettate le condizioni della morte, False altrimenti.
 	 */
 	public boolean sonoMorto() {
 		
