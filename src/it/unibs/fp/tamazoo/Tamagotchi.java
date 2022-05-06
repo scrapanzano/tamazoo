@@ -12,8 +12,8 @@ package it.unibs.fp.tamazoo;
 public class Tamagotchi {
 
 	private static final String MSG_TO_STRING = "Nome: %s %nAffetto: %.1f %nSazieta': %.1f%n";
-	private static final String MSG_MORTE = "Purtroppo il tuo Tamagotchi e' morto..";
-	private static final String MSG_TRISTEZZA = "Sono triste..";
+	private static final String MSG_MORTE = "%s: morto..";
+	private static final String MSG_TRISTEZZA = "%s dice: \"Sono triste..\".";
 	
 	public static final int MIN_ZERO = 0;
 	public static final int MAX_AFFETTO = 100;
@@ -121,17 +121,17 @@ public class Tamagotchi {
 		StringBuffer message = new StringBuffer();
 		
 		//Per visualizzare i valori interni, rimuovere il commento sottostante.
-		message.append(String.format(MSG_TO_STRING, nome, gradoAffetto, gradoSazieta));
+		//message.append(String.format(MSG_TO_STRING, nome, gradoAffetto, gradoSazieta));
 		
 		if(sonoMorto())
 		{
-			message.append(MSG_MORTE);
+			message.append(String.format(MSG_MORTE, this.nome));
 		}
 		else
 		{
 			if(sonoTriste())
 			{
-				message.append(MSG_TRISTEZZA);
+				message.append(String.format(MSG_TRISTEZZA, this.nome));
 			}
 		}
 			
