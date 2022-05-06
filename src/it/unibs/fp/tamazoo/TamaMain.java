@@ -74,11 +74,11 @@ public class TamaMain {
 	 * <p>
 	 * Esegue diverse azioni in base alla scelta dell'utente.
 	 * In particolare:
-	 * <ol start="0">
+	 * <ul>
 	 * <li>Uscita dal programma in seguito ad un messaggio di conferma;</li>
 	 * <li>Dare carezze a tutti i tamagotchi;</li>
 	 * <li>Dare biscotti a tutti i tamagotchi.</li>
-	 * </ol>
+	 * </ul>
 	 * Tutti i tamagotchi morti vengono esclusi dalle iterazioni successive.
 	 * In questo senso si visionino anche i metodi citati.
 	 * </p>
@@ -112,15 +112,28 @@ public class TamaMain {
 	 * <li>Grado di affetto iniziale stabilito in maniera casuale;</li>
 	 * <li>Grado di sazieta iniziale stabilito in maniera casuale.</li>
 	 * </ul>
+	 * La specie del tamagotchi verra' scelta con un'estrazione casuale.
+	 * Di seguito le casistiche sui diversi risultati dell'estrazione:
+	 * <ol>
+	 * <li>Il Tamagotchi sara' della specie base;</li>
+	 * <li>Il Tamagotchi sara' della specie "TamaTriste".</li>
+	 * </ol>
 	 * </p>
-	 * @return
+	 * @return tamagotchi di diversa specie.
 	 */
 	public static Tamagotchi creaTamagotchi() {
 		String nome = InputDati.leggiStringaNonVuota(MSG_NOME);
 		double gradoAffetto = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_AFFETTO);
 		double gradoSazieta = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_SAZIETA);
+		
+		int specie = EstrazioniCasuali.estraiIntero(1, 2);
+		
+		switch(specie) {
+		case 0: return new Tamagotchi(nome, gradoAffetto, gradoSazieta);
+		case 1: return new TamaTriste(nome, gradoAffetto, gradoSazieta);
+		}
 				
-		return new Tamagotchi(nome, gradoAffetto, gradoSazieta);
+		return null;
 	}
 	
 	/**

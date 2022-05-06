@@ -63,7 +63,7 @@ public class Tamagotchi {
 	/**
 	 * <p>
 	 * Modifica dei valori interni se il tamagotchi riceve biscotti.
-	 * Le modigiche avvengono come segue:
+	 * Le modifiche avvengono come segue:
 	 * <ul>
 	 * <li>Grado di sazieta': in questo caso aumenta del 10% per ogni biscotti ricevuto;</li>
 	 * <li>Gradi di affetto: in questo caso diminuisce dell' 1/4 dei biscotti ricevuti.</li>

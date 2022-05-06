@@ -1,5 +1,13 @@
 package it.unibs.fp.tamazoo;
 
+/**
+ * <p>
+ * Il TamaTriste e' un Tamagotchi che e' sempre infelice, indipendentemente 
+ * da quante carezze o biscotti riceve (pero' non muore mai di infelicita').
+ * </p>
+ * @author Davide Leone - 723335.
+ *
+ */
 public class TamaTriste extends Tamagotchi{
 	
 	public TamaTriste(String _nome, double _gradoAffetto, double _gradoSazieta) {
@@ -7,6 +15,7 @@ public class TamaTriste extends Tamagotchi{
 	}
 	
 	/**
+	 * <p>Verifica lo stato di tristezza del TamaTriste.</p>
 	 * @return Sempre True, in quanto TamaTriste ha la caratteristica di essere sempre triste.
 	 */
 	@Override
@@ -16,6 +25,7 @@ public class TamaTriste extends Tamagotchi{
 	
 	/**
 	 * <p>
+	 * Verifica lo stato di morte del TamaTriste.
 	 * Il TamaTriste muore solo se non mangia abbastanza o se mangia troppo
 	 * (come nel caso base).
 	 * </p>
