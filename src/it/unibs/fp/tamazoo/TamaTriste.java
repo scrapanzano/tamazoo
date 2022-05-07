@@ -71,7 +71,7 @@ public class TamaTriste extends Tamagotchi{
 	 * Il TamaTriste muore solo se non mangia abbastanza o se mangia troppo
 	 * (come nel caso base).
 	 * </p>
-	 * return True se viene rispettata almenu una delle condizioni di tristezza, False altrimenti. 
+	 * return True se viene rispettata almeno una delle condizioni di tristezza, False altrimenti. 
 	 */
 	@Override
 	public boolean sonoMorto() {

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"it.unibs.fp.tamazoo","l":"TamaGordo"},{"p":"it.unibs.fp.tamazoo","l":"Tamagotchi"},{"p":"it.unibs.fp.tamazoo","l":"TamaMain"},{"p":"it.unibs.fp.tamazoo","l":"TamaTriste"}];updateSearchResults();
