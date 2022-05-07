@@ -9,11 +9,12 @@ import it.unibs.fp.mylib.MyMenu;
 
 public class TamaMain {
 
+	
 	public static final String MSG_USCITA = "%nUscita dal Tamazoo in corso...";
 	public static final String MSG_MORTE_TAMAGOTCHI = "%nPurtroppo tutti i tuoi tamagotchi sono morti...";
 	public static final String MSG_CONFERMA_USCITA = "Sei sicuro di voler uscire? ";
-	public static final String AZIONE_COMPIUTA_BISCOTTI = "Hai dato biscotti a %s.";
-	public static final String AZIONE_COMPIUTA_CAREZZE = "Hai dato carezze a %s.";
+	public static final String AZIONE_COMPIUTA_BISCOTTI = "Hai dato %d biscotti a %s.";
+	public static final String AZIONE_COMPIUTA_CAREZZE = "Hai dato %d carezze a %s.";
 	public static final String NUMERAZIONE_TAMAGOTCHI = "%n--Tamagotchi %d--";
 	public static final String MSG_NOME = "Nome Tamagotchi: ";
 	public static final String MSG_AFFETTO = "Affetto iniziale di %s: ";
@@ -26,8 +27,10 @@ public class TamaMain {
 	public final static int MIN_ZERO = 0;
 	public static final int MAX_AFFETTO = 100;
 	public static final int MAX_SAZIETA = 100;
+	public static final int MIN_CAREZZE_BISCOTTI = 1;
 	public static final int MAX_CAREZZE = 10;
 	public static final int MAX_BISCOTTI = 5;
+	public static final int NUM_SPECIE = 2;
 	
 	public static void main(String[] args) {
 		
@@ -74,21 +77,21 @@ public class TamaMain {
 	 * <p>
 	 * Esegue diverse azioni in base alla scelta dell'utente.
 	 * In particolare:
-	 * <ul>
+	 * <ol start="0">
 	 * <li>Uscita dal programma in seguito ad un messaggio di conferma;</li>
 	 * <li>Dare carezze a tutti i tamagotchi;</li>
 	 * <li>Dare biscotti a tutti i tamagotchi.</li>
-	 * </ul>
+	 * </ol>
 	 * Tutti i tamagotchi morti vengono esclusi dalle iterazioni successive.
 	 * In questo senso si visionino anche i metodi citati.
 	 * </p>
 	 * @param listaTamagotchi
 	 * @param scelta
-	 * @see daiCarezze(listaTamagotchi).
-	 * @see daiBiscotti(listaTamagotchi).
-	 * @return
+	 * @see #daiCarezze(ArrayList)
+	 * @see #daiBiscotti(ArrayList)
+	 * @return True se l'utente decide di terminare il programma, False altrimenti.
 	 */
-	private static boolean eseguiSceltaUtente(ArrayList<Tamagotchi> listaTamagotchi, int scelta) {
+	public static boolean eseguiSceltaUtente(ArrayList<Tamagotchi> listaTamagotchi, int scelta) {
 		switch(scelta) {
 		
 		case 0: return InputDati.yesOrNo(MSG_CONFERMA_USCITA);
@@ -114,9 +117,10 @@ public class TamaMain {
 	 * </ul>
 	 * La specie del tamagotchi verra' scelta con un'estrazione casuale.
 	 * Di seguito le casistiche sui diversi risultati dell'estrazione:
-	 * <ol>
-	 * <li>Il Tamagotchi sara' della specie base;</li>
-	 * <li>Il Tamagotchi sara' della specie "TamaTriste".</li>
+	 * <ol start="0">
+	 * <li>Il tamagotchi sara' della specie base;</li>
+	 * <li>Il tamagotchi sara' della specie "triste".</li>
+	 * <li>Il tamagotchi sara' della specie "ingordo".</li>
 	 * </ol>
 	 * </p>
 	 * @return tamagotchi di diversa specie.
@@ -126,11 +130,12 @@ public class TamaMain {
 		double gradoAffetto = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_AFFETTO);
 		double gradoSazieta = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_SAZIETA);
 		
-		int specie = EstrazioniCasuali.estraiIntero(0, 1);
+		int specie = EstrazioniCasuali.estraiIntero(MIN_ZERO, NUM_SPECIE);
 		
 		switch(specie) {
 		case 0: return new Tamagotchi(nome, gradoAffetto, gradoSazieta);
-		case 1: return new TamaTriste(nome, gradoAffetto, gradoSazieta);
+		case 1: return new TamaTriste(nome, gradoSazieta);
+		case 2: return new TamaGordo(nome, gradoSazieta);
 		}
 				
 		return null;
@@ -145,11 +150,11 @@ public class TamaMain {
 	 * @param listaTamagotchi
 	 */
 	public static void daiCarezze(ArrayList<Tamagotchi> listaTamagotchi) {
-		int numCarezze = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_CAREZZE);
+		int numCarezze = EstrazioniCasuali.estraiIntero(MIN_CAREZZE_BISCOTTI, MAX_CAREZZE);
 	    
 		for(Tamagotchi tamagotchi : listaTamagotchi) {
 			tamagotchi.riceviCarezze(numCarezze);
-			System.out.println(String.format(AZIONE_COMPIUTA_CAREZZE, tamagotchi.getNome()));
+			System.out.println(String.format(AZIONE_COMPIUTA_CAREZZE, numCarezze, tamagotchi.getNome()));
 			System.out.println(tamagotchi.toString());
 		}
 	}
@@ -163,11 +168,11 @@ public class TamaMain {
 	 * @param listaTamagotchi
 	 */
 	public static void daiBiscotti(ArrayList<Tamagotchi> listaTamagotchi) {
-		int numBiscotti = EstrazioniCasuali.estraiIntero(MIN_ZERO, MAX_BISCOTTI);
+		int numBiscotti = EstrazioniCasuali.estraiIntero(MIN_CAREZZE_BISCOTTI, MAX_BISCOTTI);
 		
 		for(Tamagotchi tamagotchi : listaTamagotchi) {
 			tamagotchi.riceviBiscotti(numBiscotti);
-			System.out.println(String.format(AZIONE_COMPIUTA_BISCOTTI, tamagotchi.getNome()));
+			System.out.println(String.format(AZIONE_COMPIUTA_BISCOTTI, numBiscotti, tamagotchi.getNome()));
 			System.out.println(tamagotchi.toString());
 		}
 	}

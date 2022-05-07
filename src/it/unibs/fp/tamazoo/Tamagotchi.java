@@ -15,17 +15,18 @@ public class Tamagotchi {
 	public static final String MSG_MORTE = "%s: morto..%n";
 	public static final String MSG_TRISTEZZA = "%s dice: \"Sono triste..\".%n";
 	
+	private static final String NOME_SPECIE = "base";
 	public static final int MIN_ZERO = 0;
-	public static final int MAX_AFFETTO = 100;
-	public static final int MAX_SAZIETA = 100;
+	protected static final int MAX_AFFETTO = 100;
+	protected static final int MAX_SAZIETA = 100;
 	
-	public static final double SOGLIA_AFFETTO_BASSO = 30;
-	public static final double SOGLIA_SAZIETA_BASSA = 30;
-	public static final double SOGLIA_SAZIETA_ALTA = 90;
+	protected static final double SOGLIA_AFFETTO_BASSO = 30;
+	protected static final double SOGLIA_SAZIETA_BASSA = 30;
+	protected static final double SOGLIA_SAZIETA_ALTA = 90;
 	
-	public static final double INCREMENTO_BISCOTTO = 1.2;
-	public static final int FATTORE_CAREZZE = 2;
-	public static final int FATTORE_BISCOTTI = 4;
+	protected static final double INCREMENTO_BISCOTTO = 1.2;
+	protected static final int FATTORE_CAREZZE = 2;
+	protected static final int FATTORE_BISCOTTI = 4;
 	
 	
 	
@@ -33,13 +34,13 @@ public class Tamagotchi {
 	private String nome;
 	private double gradoAffetto;
 	private double gradoSazieta;
-	private String specie;
+	protected String specie;
 	
 	public Tamagotchi(String _nome, double _gradoAffetto, double _gradoSazieta) {
 		this.nome = _nome;
 		this.gradoAffetto = _gradoAffetto;
 		this.gradoSazieta = _gradoSazieta;
-		this.specie = "Base";
+		this.specie = NOME_SPECIE;
 	}
 	
 	public Tamagotchi(String _nome) {
@@ -52,7 +53,7 @@ public class Tamagotchi {
 	 * Le modifiche avvengono come segue:
 	 * <ul>
 	 * <li>Grado di affetto: aumenta in base alle carezze ricevute (rispettando il suo valore massimo);</li>
-	 * <li>Grado di sazieta': diminuisce della meta delle carezze ricevute (rispettando il suo valore minimo).</li>
+	 * <li>Grado di sazieta': diminuisce della meta' delle carezze ricevute (rispettando il suo valore minimo).</li>
 	 * </ul>
 	 * </p>
 	 * @param numCarezze
@@ -68,7 +69,7 @@ public class Tamagotchi {
 	 * Le modifiche avvengono come segue:
 	 * <ul>
 	 * <li>Grado di sazieta': in questo caso aumenta del 10% per ogni biscotti ricevuto;</li>
-	 * <li>Gradi di affetto: in questo caso diminuisce dell' 1/4 dei biscotti ricevuti.</li>
+	 * <li>Grado di affetto: in questo caso diminuisce dell' 1/4 dei biscotti ricevuti.</li>
 	 * </ul>
 	 * </p>
 	 * @param numBiscotti
@@ -91,7 +92,7 @@ public class Tamagotchi {
 	 * <li>Il grado di sazieta' e' troppo basso o troppo alto (in questo caso minore di 30 o maggiore di 90).</li>
 	 * </ul>
 	 * </p>
-	 * @return
+	 * @return True se viene rispettata almeno una delle due condizioni di tristezza, False altrimenti.
 	 */
 	public boolean sonoTriste() {
 		boolean checkAffetto = this.gradoAffetto < SOGLIA_AFFETTO_BASSO;
@@ -109,7 +110,7 @@ public class Tamagotchi {
 	 * <li>Il grado di sazieta' raggiunge il massimo.</li>
 	 * </ul>
 	 * </p>
-	 * @return True se vengono rispettate le condizioni della morte, False altrimenti.
+	 * @return True se viene rispettata almeno una delle condizioni di morte, False altrimenti.
 	 */
 	public boolean sonoMorto() {
 		
