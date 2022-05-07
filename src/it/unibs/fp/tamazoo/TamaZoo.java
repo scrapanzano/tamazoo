@@ -13,7 +13,7 @@ import it.unibs.fp.mylib.MyMenu;
  * @author Davide Leone - 723335
  *
  */
-public class TamaMain {
+public class TamaZoo {
 	
 	public static final String MSG_USCITA = "%nUscita dal Tamazoo in corso...";
 	public static final String MSG_MORTE_TAMAGOTCHI = "%nPurtroppo tutti i tuoi tamagotchi sono morti...";

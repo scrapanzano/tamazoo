@@ -16,6 +16,7 @@ public class Tamagotchi {
 	public static final String MSG_TRISTEZZA = "%s dice: \"Sono triste..\".%n";
 	
 	private static final String NOME_SPECIE = "base";
+	
 	public static final int MIN_ZERO = 0;
 	protected static final int MAX_AFFETTO = 100;
 	protected static final int MAX_SAZIETA = 100;

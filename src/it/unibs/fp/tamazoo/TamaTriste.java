@@ -74,23 +74,4 @@ public class TamaTriste extends Tamagotchi{
 		return this.getGradoSazieta() == MIN_ZERO || this.getGradoSazieta() == MAX_SAZIETA;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuffer message = new StringBuffer();
-		
-		message.append(String.format(MSG_TO_STRING, this.getNome(), this.getGradoAffettivo(), this.getGradoSazieta(), this.specie));
-	
-		if(sonoMorto())
-		{
-			message.append(String.format(MSG_MORTE, this.getNome()));
-		}
-		else
-		{
-			message.append(String.format(MSG_TRISTEZZA, this.getNome()));
-		}
-		
-		return message.toString();
-	}
-	
-	
 }
