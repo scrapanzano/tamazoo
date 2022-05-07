@@ -10,11 +10,7 @@ package it.unibs.fp.tamazoo;
  */
 public class TamaTriste extends Tamagotchi{
 	
-
-	
 	private static final String NOME_SPECIE = "triste";
-	
-	private String specie;
 	
 	public TamaTriste(String _nome,  double _gradoSazieta) {
 		super(_nome, MIN_ZERO, _gradoSazieta);
